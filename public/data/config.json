@@ -1,0 +1,43 @@
+{
+  "visualization": {
+    "types": {
+      "actual": {
+        "color": "#22c55e",
+        "size": 8,
+        "label": "Known Sites"
+      },
+      "predicted": {
+        "color": "#ef4444",
+        "size": 10,
+        "label": "Predicted Sites"
+      },
+      "false_positive": {
+        "color": "#f97316",
+        "size": 6,
+        "label": "False Positives"
+      },
+      "missed": {
+        "color": "#8b5cf6",
+        "size": 6,
+        "label": "Missed Sites"
+      }
+    },
+    "defaultView": {
+      "longitude": -119.0,
+      "latitude": 39.5,
+      "height": 2000000
+    }
+  },
+  "metadata": {
+    "title": "AlphaEarth Geothermal Predictions",
+    "subtitle": "CA → NV Spatial Cross-Validation",
+    "model": "XGBoost + AlphaEarth Embeddings",
+    "metrics": {
+      "accuracy": 0.93,
+      "recall": 0.81,
+      "precision": 0.96,
+      "sites_found": 22,
+      "sites_total": 27
+    }
+  }
+}

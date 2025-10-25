@@ -1,0 +1,209 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.5, 39.8]
+      },
+      "properties": {
+        "id": "brady-hot-springs",
+        "name": "Brady Hot Springs",
+        "type": "actual",
+        "confidence": null,
+        "region": "Nevada",
+        "capacity_mw": 26.0,
+        "year": 2023,
+        "metadata": {
+          "temperature_c": 178,
+          "elevation_m": 1200,
+          "notes": "Major geothermal facility"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.2, 40.1]
+      },
+      "properties": {
+        "id": "desert-peak",
+        "name": "Desert Peak",
+        "type": "actual",
+        "confidence": null,
+        "region": "Nevada",
+        "capacity_mw": 11.0,
+        "year": 2007,
+        "metadata": {
+          "temperature_c": 215,
+          "elevation_m": 1190
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.9, 39.5]
+      },
+      "properties": {
+        "id": "stillwater",
+        "name": "Stillwater",
+        "type": "actual",
+        "confidence": null,
+        "region": "Nevada",
+        "capacity_mw": 33.1,
+        "year": 2009,
+        "metadata": {
+          "temperature_c": 163,
+          "elevation_m": 1220
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.7, 40.3]
+      },
+      "properties": {
+        "id": "pred-pyramid-lake",
+        "name": "Pyramid Lake Site",
+        "type": "predicted",
+        "confidence": 0.95,
+        "region": "Nevada",
+        "capacity_mw": null,
+        "year": 2024,
+        "metadata": {
+          "temperature_c": 185,
+          "elevation_m": 1180,
+          "notes": "High confidence prediction"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.5, 39.9]
+      },
+      "properties": {
+        "id": "pred-dixie-valley",
+        "name": "Dixie Valley Extension",
+        "type": "predicted",
+        "confidence": 0.88,
+        "region": "Nevada",
+        "capacity_mw": null,
+        "year": 2024,
+        "metadata": {
+          "temperature_c": 170,
+          "elevation_m": 1150
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.1, 39.2]
+      },
+      "properties": {
+        "id": "pred-fallon",
+        "name": "Fallon Prospect",
+        "type": "predicted",
+        "confidence": 0.82,
+        "region": "Nevada",
+        "capacity_mw": null,
+        "year": 2024,
+        "metadata": {
+          "temperature_c": 155,
+          "elevation_m": 1210
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.9, 39.6]
+      },
+      "properties": {
+        "id": "fp-reno-west",
+        "name": "Reno West",
+        "type": "false_positive",
+        "confidence": 0.72,
+        "region": "Nevada",
+        "capacity_mw": null,
+        "year": 2024,
+        "metadata": {
+          "temperature_c": 120,
+          "elevation_m": 1450,
+          "notes": "Temperature too low"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.2, 40.2]
+      },
+      "properties": {
+        "id": "fp-humboldt",
+        "name": "Humboldt Range",
+        "type": "false_positive",
+        "confidence": 0.68,
+        "region": "Nevada",
+        "capacity_mw": null,
+        "year": 2024,
+        "metadata": {
+          "notes": "Geological survey ruled out"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.4, 39.0]
+      },
+      "properties": {
+        "id": "missed-fernley",
+        "name": "Fernley Site",
+        "type": "missed",
+        "confidence": null,
+        "region": "Nevada",
+        "capacity_mw": 8.5,
+        "year": 2023,
+        "metadata": {
+          "temperature_c": 145,
+          "elevation_m": 1250,
+          "notes": "Small site, under model threshold"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.7, 39.7]
+      },
+      "properties": {
+        "id": "missed-dixie-meadows",
+        "name": "Dixie Meadows",
+        "type": "missed",
+        "confidence": null,
+        "region": "Nevada",
+        "capacity_mw": 12.0,
+        "year": 2022,
+        "metadata": {
+          "temperature_c": 160,
+          "elevation_m": 1195,
+          "notes": "Recently discovered"
+        }
+      }
+    }
+  ]
+}
