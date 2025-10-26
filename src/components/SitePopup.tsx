@@ -32,17 +32,7 @@ export default function SitePopup({ site, config, onClose }: SitePopupProps) {
   const typeConfig = config.visualization.types[type];
   const [longitude, latitude] = site.geometry.coordinates;
 
-  // Create metadata from available fields
-  const metadata = {
-    temperature: `${temperature.toFixed(1)}°C`,
-    elevation: `${elevation}m`,
-    slope: `${slope.toFixed(2)}°`,
-    aspect: `${aspect.toFixed(1)}°`,
-    prediction: prediction === 1 ? 'Positive' : 'Negative',
-    actual_label: actual_label === 1 ? 'Positive' : 'Negative',
-  };
-  
-  const metadataEntries = Object.entries(metadata);
+
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -145,17 +135,4 @@ function InfoItem({ label, value }: InfoItemProps) {
   );
 }
 
-// Helper function to format metadata keys (convert snake_case to Title Case)
-function formatKey(key: string): string {
-  return key
-    .split('_')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
 
-// Helper function to format metadata values
-function formatValue(value: any): string {
-  if (value === null || value === undefined) return 'N/A';
-  if (typeof value === 'object') return JSON.stringify(value);
-  return String(value);
-}

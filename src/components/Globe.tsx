@@ -155,7 +155,7 @@ export default function Globe({ sites, config, onSiteClick }: GlobeProps) {
     // Add entities for each site
     sites.features.forEach((feature) => {
       const [longitude, latitude] = feature.geometry.coordinates;
-      const { id, viz_label, probability, temperature, elevation } = feature.properties;
+      const { id, viz_label, probability } = feature.properties;
 
       // Map viz_label to type for config lookup
       const type = viz_label;
