@@ -14,7 +14,7 @@
 
       "missed": {
         "color": "#8b5cf6",
-        "size": 20,
+        "size": 2,
         "label": "Missed Sites"
       }
     },
@@ -33,7 +33,7 @@
       "recall": 0.81,
       "precision": 0.95,
       "sites_found": 22,
-      "sites_total": 27
+      "sites_total": 25
     }
   }
 }
