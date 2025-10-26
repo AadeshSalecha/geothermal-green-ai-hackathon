@@ -3,22 +3,18 @@
     "types": {
       "actual": {
         "color": "#22c55e",
-        "size": 8,
+        "size": 25,
         "label": "Known Sites"
       },
       "predicted": {
         "color": "#ef4444",
-        "size": 10,
+        "size": 25,
         "label": "Predicted Sites"
       },
-      "false_positive": {
-        "color": "#f97316",
-        "size": 6,
-        "label": "False Positives"
-      },
+
       "missed": {
         "color": "#8b5cf6",
-        "size": 6,
+        "size": 2,
         "label": "Missed Sites"
       }
     },

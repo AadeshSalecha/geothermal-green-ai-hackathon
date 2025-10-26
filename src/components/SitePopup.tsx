@@ -13,12 +13,36 @@ interface SitePopupProps {
 export default function SitePopup({ site, config, onClose }: SitePopupProps) {
   if (!site) return null;
 
-  const { name, type, confidence, region, capacity_mw, year, metadata } = site.properties;
+  const { 
+    id, 
+    viz_label, 
+    probability, 
+    temperature, 
+    elevation, 
+    slope, 
+    aspect, 
+    prediction, 
+    actual_label 
+  } = site.properties;
+  
+  // Create display values
+  const name = `Site ${id}`;
+  const type = viz_label;
+  const confidence = probability;
   const typeConfig = config.visualization.types[type];
   const [longitude, latitude] = site.geometry.coordinates;
 
-  // Format metadata for display
-  const metadataEntries = metadata ? Object.entries(metadata) : [];
+  // Create metadata from available fields
+  const metadata = {
+    temperature: `${temperature.toFixed(1)}°C`,
+    elevation: `${elevation}m`,
+    slope: `${slope.toFixed(2)}°`,
+    aspect: `${aspect.toFixed(1)}°`,
+    prediction: prediction === 1 ? 'Positive' : 'Negative',
+    actual_label: actual_label === 1 ? 'Positive' : 'Negative',
+  };
+  
+  const metadataEntries = Object.entries(metadata);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -55,17 +79,15 @@ export default function SitePopup({ site, config, onClose }: SitePopupProps) {
         <div className="p-4 space-y-4">
           {/* Basic Information */}
           <div className="grid grid-cols-2 gap-3">
-            <InfoItem label="Region" value={region} />
-            <InfoItem label="Year" value={year.toString()} />
-            {confidence !== null && (
-              <InfoItem
-                label="Confidence"
-                value={`${(confidence * 100).toFixed(1)}%`}
-              />
-            )}
-            {capacity_mw !== null && (
-              <InfoItem label="Capacity" value={`${capacity_mw} MW`} />
-            )}
+            <InfoItem label="Site ID" value={id} />
+            <InfoItem label="Type" value={typeConfig.label} />
+            <InfoItem
+              label="Probability"
+              value={`${(confidence * 100).toFixed(1)}%`}
+            />
+            <InfoItem label="Temperature" value={`${temperature.toFixed(1)}°C`} />
+            <InfoItem label="Elevation" value={`${elevation}m`} />
+            <InfoItem label="Slope" value={`${slope.toFixed(2)}°`} />
           </div>
 
           {/* Coordinates */}
@@ -77,21 +99,22 @@ export default function SitePopup({ site, config, onClose }: SitePopupProps) {
             </div>
           </div>
 
-          {/* Metadata */}
-          {metadataEntries.length > 0 && (
-            <div className="pt-3 border-t border-gray-200">
-              <h3 className="text-sm font-semibold text-gray-700 mb-2">Additional Info</h3>
-              <div className="space-y-2">
-                {metadataEntries.map(([key, value]) => (
-                  <InfoItem
-                    key={key}
-                    label={formatKey(key)}
-                    value={formatValue(value)}
-                  />
-                ))}
-              </div>
+          {/* Model Results */}
+          <div className="pt-3 border-t border-gray-200">
+            <h3 className="text-sm font-semibold text-gray-700 mb-2">Model Results</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <InfoItem 
+                label="Prediction" 
+                value={prediction === 1 ? 'Geothermal Site' : 'Not Geothermal'} 
+              />
+              <InfoItem 
+                label="Actual" 
+                value={actual_label === 1 ? 'Geothermal Site' : 'Not Geothermal'} 
+              />
+              <InfoItem label="Aspect" value={`${aspect.toFixed(1)}°`} />
+              <InfoItem label="TRI" value={site.properties.tri.toFixed(3)} />
             </div>
-          )}
+          </div>
         </div>
 
         {/* Footer */}

@@ -19,67 +19,79 @@ export default function Globe({ sites, config, onSiteClick }: GlobeProps) {
 
   // Initialize Cesium viewer
   useEffect(() => {
-    if (!containerRef.current || viewerRef.current) return;
+  if (!containerRef.current || viewerRef.current) return;
 
-    // Create viewer with enhanced imagery (no Ion token required)
-    const viewer = new Cesium.Viewer(containerRef.current, {
-      animation: false,
-      timeline: false,
-      baseLayerPicker: false,
-      geocoder: false,
-      homeButton: false,
-      navigationHelpButton: false,
-      sceneModePicker: false,
-      selectionIndicator: false,
-      infoBox: false,
-      fullscreenButton: false,
-      // Use basic ellipsoid terrain instead of Ion terrain
-      terrainProvider: new Cesium.EllipsoidTerrainProvider(),
-    });
+  // ✅ Create the Cesium Viewer
+  const viewer = new Cesium.Viewer(containerRef.current, {
+    animation: false,
+    timeline: false,
+    baseLayerPicker: false,
+    geocoder: false,
+    homeButton: false,
+    navigationHelpButton: false,
+    sceneModePicker: false,
+    selectionIndicator: false,
+    infoBox: false,
+    fullscreenButton: false,
+    terrainProvider: new Cesium.EllipsoidTerrainProvider(),
+  });
 
-    // Remove default imagery and add our own
-    viewer.imageryLayers.removeAll();
-
-    // Try multiple imagery providers as fallbacks
-    try {
-      // Primary: OpenStreetMap
-      viewer.imageryLayers.addImageryProvider(
-        new Cesium.OpenStreetMapImageryProvider({
-          url: 'https://tile.openstreetmap.org/',
-        })
-      );
-    } catch (error) {
-      console.warn('OpenStreetMap failed, using fallback imagery');
-      // Fallback: Create a simple single image provider
-      viewer.imageryLayers.addImageryProvider(
-        new Cesium.SingleTileImageryProvider({
-          url: 'data:image/svg+xml;base64,' + btoa(`
+  // ✅ Remove default imagery and add OpenStreetMap (fallback to simple SVG if failed)
+  viewer.imageryLayers.removeAll();
+  try {
+    viewer.imageryLayers.addImageryProvider(
+      new Cesium.OpenStreetMapImageryProvider({
+        url: 'https://tile.openstreetmap.org/',
+      })
+    );
+  } catch (error) {
+    console.warn('OpenStreetMap failed, using fallback imagery');
+    viewer.imageryLayers.addImageryProvider(
+      new Cesium.SingleTileImageryProvider({
+        url:
+          'data:image/svg+xml;base64,' +
+          btoa(`
             <svg width="256" height="256" xmlns="http://www.w3.org/2000/svg">
               <rect width="256" height="256" fill="#1a365d"/>
               <circle cx="128" cy="128" r="100" fill="#2d5a87" opacity="0.5"/>
             </svg>
           `),
-          rectangle: Cesium.Rectangle.MAX_VALUE,
-        })
-      );
-    }
+        rectangle: Cesium.Rectangle.MAX_VALUE,
+      })
+    );
+  }
 
-    // Configure globe appearance for better visibility
+  // ✅ SAFETY GUARD: Only access scene if ready
+  if (viewer?.scene && viewer.scene.globe) {
     viewer.scene.globe.enableLighting = false;
     viewer.scene.globe.showWaterEffect = true;
     viewer.scene.globe.baseColor = Cesium.Color.BLUE.withAlpha(0.5);
-
-    // Set a dark space background
     viewer.scene.backgroundColor = Cesium.Color.BLACK;
-
-    // Ensure the globe is visible
     viewer.scene.globe.show = true;
 
-    // Set default view from config
-    const { longitude, latitude, height } = config.visualization.defaultView;
+    // Disable depth testing against terrain for ellipsoid terrain
+    viewer.scene.globe.depthTestAgainstTerrain = false;
 
-    // Set camera position with a slight delay to ensure globe is ready
-    setTimeout(() => {
+    // Configure camera controls
+    const controller = viewer.scene.screenSpaceCameraController;
+    controller.enableRotate = true;
+    controller.enableTranslate = true;
+    controller.enableZoom = true;
+    controller.enableTilt = true;
+    controller.enableLook = true;
+    controller.minimumZoomDistance = 1000;        // 1km
+    controller.maximumZoomDistance = 20000000;    // 20,000km
+
+    // Render once to ensure globe is visible
+    viewer.scene.requestRender();
+  } else {
+    console.warn('⚠️ Cesium scene not ready at init time');
+  }
+
+  // ✅ Set default camera view from config with slight delay
+  const { longitude, latitude, height } = config.visualization.defaultView;
+  setTimeout(() => {
+    if (viewer?.camera) {
       viewer.camera.setView({
         destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, height),
         orientation: {
@@ -88,34 +100,47 @@ export default function Globe({ sites, config, onSiteClick }: GlobeProps) {
           roll: 0.0,
         },
       });
-    }, 100);
+    }
+  }, 100);
 
-    // Enable depth testing to avoid z-fighting
-    viewer.scene.globe.depthTestAgainstTerrain = false; // Disable for ellipsoid terrain
+  // ✅ Keyboard movement controls
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (!viewer?.camera) return;
 
-    // Configure camera controls for better user experience
-    viewer.scene.screenSpaceCameraController.enableRotate = true;
-    viewer.scene.screenSpaceCameraController.enableTranslate = true;
-    viewer.scene.screenSpaceCameraController.enableZoom = true;
-    viewer.scene.screenSpaceCameraController.enableTilt = true;
-    viewer.scene.screenSpaceCameraController.enableLook = true;
+    const camera = viewer.camera;
+    const moveAmount = 50;
+    const currentHeight = camera.positionCartographic.height;
 
-    // Set zoom limits
-    viewer.scene.screenSpaceCameraController.minimumZoomDistance = 1000; // 1km
-    viewer.scene.screenSpaceCameraController.maximumZoomDistance = 20000000; // 20,000km
+    if (currentHeight > 1000) return;
 
-    // Force a render to ensure everything is displayed
-    viewer.scene.requestRender();
+    switch (event.key.toLowerCase()) {
+      case 'w':
+        camera.moveForward(moveAmount);
+        break;
+      case 's':
+        camera.moveBackward(moveAmount);
+        break;
+      case 'a':
+        camera.moveLeft(moveAmount);
+        break;
+      case 'd':
+        camera.moveRight(moveAmount);
+        break;
+    }
+  };
 
-    viewerRef.current = viewer;
+  document.addEventListener('keydown', handleKeyDown);
+  viewerRef.current = viewer;
 
-    return () => {
-      if (viewerRef.current) {
-        viewerRef.current.destroy();
-        viewerRef.current = null;
-      }
-    };
-  }, [config]);
+  // ✅ Cleanup on unmount
+  return () => {
+    document.removeEventListener('keydown', handleKeyDown);
+    if (viewerRef.current) {
+      viewerRef.current.destroy();
+      viewerRef.current = null;
+    }
+  };
+}, [config]);
 
   // Update site markers when sites change
   useEffect(() => {
@@ -130,7 +155,12 @@ export default function Globe({ sites, config, onSiteClick }: GlobeProps) {
     // Add entities for each site
     sites.features.forEach((feature) => {
       const [longitude, latitude] = feature.geometry.coordinates;
-      const { name, type, confidence } = feature.properties;
+      const { id, viz_label, probability, temperature, elevation } = feature.properties;
+
+      // Map viz_label to type for config lookup
+      const type = viz_label;
+      const name = `Site ${id}`;
+      const confidence = probability;
 
       const typeConfig = config.visualization.types[type];
       if (!typeConfig) return;
@@ -222,6 +252,18 @@ export default function Globe({ sites, config, onSiteClick }: GlobeProps) {
         });
       }
     }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+
+    // Handle right-click for Street View
+    handler.setInputAction((movement: Cesium.ScreenSpaceEventHandler.PositionedEvent) => {
+      const cartesian = viewer.camera.pickEllipsoid(movement.position, viewer.scene.globe.ellipsoid);
+      if (cartesian) {
+        const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+        const longitude = Cesium.Math.toDegrees(cartographic.longitude);
+        const latitude = Cesium.Math.toDegrees(cartographic.latitude);
+
+        handleRightClick(longitude, latitude);
+      }
+    }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
 
     // Handle hover events to show/hide labels
     handler.setInputAction((movement: Cesium.ScreenSpaceEventHandler.MotionEvent) => {
@@ -328,6 +370,81 @@ export default function Globe({ sites, config, onSiteClick }: GlobeProps) {
     }
   };
 
+  // Street View mode functions
+  const enterStreetView = (longitude: number, latitude: number) => {
+    if (viewerRef.current) {
+      const viewer = viewerRef.current;
+
+      // Set camera to ground level with street view perspective
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 10), // 10 meters above ground
+        orientation: {
+          heading: 0.0, // North
+          pitch: 0.0,   // Level horizon
+          roll: 0.0,
+        },
+        duration: 2.0,
+      });
+
+      // Enable first-person controls
+      viewer.scene.screenSpaceCameraController.enableLook = true;
+      viewer.scene.screenSpaceCameraController.minimumZoomDistance = 1; // Allow very close zoom
+
+      // Add a pin marker at the location
+      viewer.entities.add({
+        id: 'street-view-pin',
+        position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
+        billboard: {
+          image: 'data:image/svg+xml;base64,' + btoa(`
+            <svg width="32" height="48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 0C7.2 0 0 7.2 0 16c0 16 16 32 16 32s16-16 16-32C32 7.2 24.8 0 16 0z" fill="#ff4444"/>
+              <circle cx="16" cy="16" r="8" fill="white"/>
+              <circle cx="16" cy="16" r="4" fill="#ff4444"/>
+            </svg>
+          `),
+          scale: 1.0,
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+          heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
+        },
+        label: {
+          text: 'Street View Location',
+          font: '12px sans-serif',
+          fillColor: Cesium.Color.WHITE,
+          outlineColor: Cesium.Color.BLACK,
+          outlineWidth: 2,
+          style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+          pixelOffset: new Cesium.Cartesian2(0, -50),
+        },
+      });
+    }
+  };
+
+  const exitStreetView = () => {
+    if (viewerRef.current) {
+      const viewer = viewerRef.current;
+
+      // Remove street view pin
+      const pin = viewer.entities.getById('street-view-pin');
+      if (pin) {
+        viewer.entities.remove(pin);
+      }
+
+      // Reset camera controls
+      viewer.scene.screenSpaceCameraController.minimumZoomDistance = 1000;
+
+      // Return to overview
+      resetView();
+    }
+  };
+
+  // Right-click handler for dropping pins
+  const handleRightClick = (longitude: number, latitude: number) => {
+    if (viewerRef.current) {
+      enterStreetView(longitude, latitude);
+    }
+  };
+
   return (
     <div className="relative w-full h-full">
       <div
@@ -378,6 +495,19 @@ export default function Globe({ sites, config, onSiteClick }: GlobeProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         </button>
+
+        <div className="border-t border-gray-600 my-2"></div>
+
+        <button
+          onClick={exitStreetView}
+          className="bg-green-600 hover:bg-green-500 text-white p-2 rounded shadow-lg transition-colors"
+          title="Exit Street View"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+        </button>
       </div>
 
       {/* Instructions */}
@@ -385,8 +515,12 @@ export default function Globe({ sites, config, onSiteClick }: GlobeProps) {
         <div className="font-semibold mb-1">Navigation:</div>
         <div>• Click site to zoom in</div>
         <div>• Double-click to zoom to location</div>
+        <div>• Right-click for Street View</div>
         <div>• Mouse wheel to zoom</div>
         <div>• Drag to rotate globe</div>
+        <div className="mt-2 text-xs text-yellow-300">
+          💡 Street View: Look around with mouse, WASD to move
+        </div>
       </div>
     </div>
   );

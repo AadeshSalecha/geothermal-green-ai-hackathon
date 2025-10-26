@@ -57,7 +57,7 @@ export function calculateSiteStats(sites: SitesGeoJSON): SiteStats {
   const stats: SiteStats = {};
 
   sites.features.forEach(feature => {
-    const type = feature.properties.type;
+    const type = feature.properties.viz_label;
     stats[type] = (stats[type] || 0) + 1;
   });
 
@@ -86,15 +86,15 @@ export function filterSites(
   searchQuery: string
 ): SitesGeoJSON {
   const filteredFeatures = sites.features.filter(feature => {
-    const type = feature.properties.type;
-    const name = feature.properties.name.toLowerCase();
+    const type = feature.properties.viz_label;
+    const name = `Site ${feature.properties.id}`;
     const query = searchQuery.toLowerCase().trim();
 
     // Check if type is visible
     const typeVisible = filters[type] !== false;
 
     // Check if name matches search query
-    const matchesSearch = query === '' || name.includes(query);
+    const matchesSearch = query === '' || name.toLowerCase().includes(query);
 
     return typeVisible && matchesSearch;
   });
@@ -104,6 +104,7 @@ export function filterSites(
     features: filteredFeatures,
   };
 }
+
 
 /**
  * Convert hex color to RGB array for Cesium

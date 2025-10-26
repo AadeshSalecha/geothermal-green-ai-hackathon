@@ -3,7 +3,7 @@
  */
 
 // Site type categories
-export type SiteType = 'actual' | 'predicted' | 'false_positive' | 'missed';
+export type SiteType = 'actual' | 'predicted' | 'missed';
 
 // GeoJSON Feature for a geothermal site
 export interface SiteFeature {
@@ -14,14 +14,25 @@ export interface SiteFeature {
   };
   properties: {
     id: string;
-    name: string;
-    type: SiteType;
-    confidence: number | null; // 0-1, null for actual sites
-    region: string;
-    capacity_mw: number | null;
-    year: number;
+    probability: number;
+    prediction: number;
+    actual_label: number;
+    viz_label: SiteType;
+    temperature: number;
+    elevation: number;
+    slope: number;
+    aspect: number;
+    tri: number;
+    tpi: number;
+    // Legacy fields for backward compatibility
+    name?: string;
+    type?: SiteType;
+    confidence?: number | null;
+    region?: string;
+    capacity_mw?: number | null;
+    year?: number;
     metadata?: {
-      [key: string]: any; // Extensible metadata
+      [key: string]: any;
     };
   };
 }

@@ -5,204 +5,575 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-119.5, 39.8]
+        "coordinates": [
+          -119.180073,
+          39.164166
+        ]
       },
       "properties": {
-        "id": "brady-hot-springs",
-        "name": "Brady Hot Springs",
-        "type": "actual",
-        "confidence": null,
-        "region": "Nevada",
-        "capacity_mw": 26.0,
-        "year": 2023,
-        "metadata": {
-          "temperature_c": 178,
-          "elevation_m": 1200,
-          "notes": "Major geothermal facility"
-        }
+        "id": "188",
+        "probability": 0.9770439267158508,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 23.20938725000002,
+        "elevation": 1320,
+        "slope": 0.9559096,
+        "aspect": 0,
+        "tri": 0.4969039949768143,
+        "tpi": 2.460567823337442
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-119.2, 40.1]
+        "coordinates": [
+          -118.838354,
+          39.557089
+        ]
       },
       "properties": {
-        "id": "desert-peak",
-        "name": "Desert Peak",
-        "type": "actual",
-        "confidence": null,
-        "region": "Nevada",
-        "capacity_mw": 11.0,
-        "year": 2007,
-        "metadata": {
-          "temperature_c": 215,
-          "elevation_m": 1190
-        }
+        "id": "189",
+        "probability": 0.5449424386024475,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 28.65087509,
+        "elevation": 1212,
+        "slope": 1.9112874,
+        "aspect": 0,
+        "tri": 0.8314794192692699,
+        "tpi": -1.208201892749457
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-118.9, 39.5]
+        "coordinates": [
+          -119.010022,
+          39.795861
+        ]
       },
       "properties": {
-        "id": "stillwater",
-        "name": "Stillwater",
-        "type": "actual",
-        "confidence": null,
-        "region": "Nevada",
-        "capacity_mw": 33.1,
-        "year": 2009,
-        "metadata": {
-          "temperature_c": 163,
-          "elevation_m": 1220
-        }
+        "id": "190",
+        "probability": 0.9951299428939819,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 20.16905846000003,
+        "elevation": 1257,
+        "slope": 1.5687171,
+        "aspect": 52.463856,
+        "tri": 0.816496580927726,
+        "tpi": -1.3312302839158292
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-119.7, 40.3]
+        "coordinates": [
+          -118.953428,
+          39.754089
+        ]
       },
       "properties": {
-        "id": "pred-pyramid-lake",
-        "name": "Pyramid Lake Site",
-        "type": "predicted",
-        "confidence": 0.95,
-        "region": "Nevada",
-        "capacity_mw": null,
-        "year": 2024,
-        "metadata": {
-          "temperature_c": 185,
-          "elevation_m": 1180,
-          "notes": "High confidence prediction"
-        }
+        "id": "191",
+        "probability": 0.9924652576446533,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 21.086796830000026,
+        "elevation": 1346,
+        "slope": 3.1228738,
+        "aspect": 203.4405,
+        "tri": 1.2570787221002713,
+        "tpi": 0.4668769716045062
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-118.5, 39.9]
+        "coordinates": [
+          -119.073083,
+          39.585925
+        ]
       },
       "properties": {
-        "id": "pred-dixie-valley",
-        "name": "Dixie Valley Extension",
-        "type": "predicted",
-        "confidence": 0.88,
-        "region": "Nevada",
-        "capacity_mw": null,
-        "year": 2024,
-        "metadata": {
-          "temperature_c": 170,
-          "elevation_m": 1150
-        }
+        "id": "192",
+        "probability": 0.9442924857139587,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 22.062641540000016,
+        "elevation": 1263,
+        "slope": 1.5657252,
+        "aspect": 127.62035,
+        "tri": 0.9938079899536288,
+        "tpi": 5.025236593054842
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-119.1, 39.2]
+        "coordinates": [
+          -119.766762,
+          39.37006
+        ]
       },
       "properties": {
-        "id": "pred-fallon",
-        "name": "Fallon Prospect",
-        "type": "predicted",
-        "confidence": 0.82,
-        "region": "Nevada",
-        "capacity_mw": null,
-        "year": 2024,
-        "metadata": {
-          "temperature_c": 155,
-          "elevation_m": 1210
-        }
+        "id": "193",
+        "probability": 0.9666702747344971,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 20.804810180000004,
+        "elevation": 1633,
+        "slope": 2.2758605,
+        "aspect": 32.89382,
+        "tri": 1.2570787221825894,
+        "tpi": 8.220820189266988
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-119.9, 39.6]
+        "coordinates": [
+          -119.764606,
+          39.373294
+        ]
       },
       "properties": {
-        "id": "fp-reno-west",
-        "name": "Reno West",
-        "type": "false_positive",
-        "confidence": 0.72,
-        "region": "Nevada",
-        "capacity_mw": null,
-        "year": 2024,
-        "metadata": {
-          "temperature_c": 120,
-          "elevation_m": 1450,
-          "notes": "Temperature too low"
-        }
+        "id": "194",
+        "probability": 0.8770478963851929,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 25.76093918000004,
+        "elevation": 1647,
+        "slope": 12.730892,
+        "aspect": 107.18222,
+        "tri": 4.946628731030165,
+        "tpi": 1.753943217658616
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-118.2, 40.2]
+        "coordinates": [
+          -119.74682,
+          39.395662
+        ]
       },
       "properties": {
-        "id": "fp-humboldt",
-        "name": "Humboldt Range",
-        "type": "false_positive",
-        "confidence": 0.68,
-        "region": "Nevada",
-        "capacity_mw": null,
-        "year": 2024,
-        "metadata": {
-          "notes": "Geological survey ruled out"
-        }
+        "id": "195",
+        "probability": 0.9906349778175354,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 18.897555020000027,
+        "elevation": 1416,
+        "slope": 3.8267138,
+        "aspect": 75.55499,
+        "tri": 1.8856180831641267,
+        "tpi": 3.283911671917622
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-119.4, 39.0]
+        "coordinates": [
+          -119.747359,
+          39.394314
+        ]
       },
       "properties": {
-        "id": "missed-fernley",
-        "name": "Fernley Site",
-        "type": "missed",
-        "confidence": null,
-        "region": "Nevada",
-        "capacity_mw": 8.5,
-        "year": 2023,
-        "metadata": {
-          "temperature_c": 145,
-          "elevation_m": 1250,
-          "notes": "Small site, under model threshold"
-        }
+        "id": "196",
+        "probability": 0.9706993103027344,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 19.533306740000057,
+        "elevation": 1418,
+        "slope": 0.9559096,
+        "aspect": 0,
+        "tri": 0.4714045207910317,
+        "tpi": 0.0536277602463997
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-118.7, 39.7]
+        "coordinates": [
+          -119.753557,
+          39.393775
+        ]
       },
       "properties": {
-        "id": "missed-dixie-meadows",
-        "name": "Dixie Meadows",
-        "type": "missed",
-        "confidence": null,
-        "region": "Nevada",
-        "capacity_mw": 12.0,
-        "year": 2022,
-        "metadata": {
-          "temperature_c": 160,
-          "elevation_m": 1195,
-          "notes": "Recently discovered"
-        }
+        "id": "197",
+        "probability": 0.9902397394180298,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 18.13533656000004,
+        "elevation": 1444,
+        "slope": 5.8474817,
+        "aspect": 12.170308,
+        "tri": 2.160246899469287,
+        "tpi": 0.2523659305941237
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.399711,
+          40.380664
+        ]
+      },
+      "properties": {
+        "id": "198",
+        "probability": 0.9927040338516235,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 20.880006620000017,
+        "elevation": 1243,
+        "slope": 1.5772376,
+        "aspect": 307.29858,
+        "tri": 0.7370277311276879,
+        "tpi": -1.3533123028446423
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.141441,
+          40.99619
+        ]
+      },
+      "properties": {
+        "id": "199",
+        "probability": 0.9458503723144531,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 10.414029379999988,
+        "elevation": 1287,
+        "slope": 0.9559096,
+        "aspect": 0,
+        "tri": 0.4714045207910317,
+        "tpi": -0.6025236593093268
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.555654,
+          39.547387
+        ]
+      },
+      "properties": {
+        "id": "200",
+        "probability": 0.9290860295295715,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 16.96637371999998,
+        "elevation": 1190,
+        "slope": 1.5651798,
+        "aspect": 52.364246,
+        "tri": 0.566557723651355,
+        "tpi": 0.1261829652924007
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.572362,
+          39.294332
+        ]
+      },
+      "properties": {
+        "id": "201",
+        "probability": 0.9850209951400757,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 30.58376540000006,
+        "elevation": 1254,
+        "slope": 4.924866,
+        "aspect": 14.489945,
+        "tri": 2.0427529234390613,
+        "tpi": 0.1482649842237151
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.855776,
+          39.966182
+        ]
+      },
+      "properties": {
+        "id": "202",
+        "probability": 0.9958536624908447,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 19.04794790000005,
+        "elevation": 1066,
+        "slope": 1.9112874,
+        "aspect": 180,
+        "tri": 0.9938079899536288,
+        "tpi": 1.429022082013944
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.473902,
+          40.180699
+        ]
+      },
+      "properties": {
+        "id": "203",
+        "probability": 0.48764216899871826,
+        "prediction": 0,
+        "actual_label": 1,
+        "viz_label": "missed",
+        "temperature": 8.313656089999995,
+        "elevation": 1466,
+        "slope": 8.893138,
+        "aspect": 257.6861,
+        "tri": 2.698879511450991,
+        "tpi": 1.5678233438422922
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.617449,
+          40.554758
+        ]
+      },
+      "properties": {
+        "id": "204",
+        "probability": 0.9217562675476074,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 14.447292980000045,
+        "elevation": 1510,
+        "slope": 2.2876525,
+        "aspect": 326.65186,
+        "tri": 0.8314794193937232,
+        "tpi": -0.2271293375470122
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.323888,
+          38.83673
+        ]
+      },
+      "properties": {
+        "id": "205",
+        "probability": 0.9536320567131042,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 19.020603740000013,
+        "elevation": 1294,
+        "slope": 1.5553266,
+        "aspect": 232.0837,
+        "tri": 0.6285393610912947,
+        "tpi": 0.9873817034640524
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.150954,
+          41.482897
+        ]
+      },
+      "properties": {
+        "id": "208",
+        "probability": 0.38266459107398987,
+        "prediction": 0,
+        "actual_label": 1,
+        "viz_label": "missed",
+        "temperature": 12.075187099999994,
+        "elevation": 1797,
+        "slope": 10.772761,
+        "aspect": 110.53478,
+        "tri": 4.732342097570827,
+        "tpi": -6.488958990543324
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.325236,
+          38.835921
+        ]
+      },
+      "properties": {
+        "id": "209",
+        "probability": 0.9844767451286316,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 19.082128099999977,
+        "elevation": 1293,
+        "slope": 4.0095577,
+        "aspect": 17.793875,
+        "tri": 1.4989708403514452,
+        "tpi": -0.9179810725606784
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.754635,
+          39.390811
+        ]
+      },
+      "properties": {
+        "id": "211",
+        "probability": 0.9940527081489563,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 19.348733659999997,
+        "elevation": 1454,
+        "slope": 12.323297,
+        "aspect": 98.78651,
+        "tri": 4.08248290463863,
+        "tpi": -0.5615141955884155
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.748976,
+          39.388655
+        ]
+      },
+      "properties": {
+        "id": "212",
+        "probability": 0.9933491349220276,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 18.24129518000001,
+        "elevation": 1431,
+        "slope": 2.650323,
+        "aspect": 68.871994,
+        "tri": 1.0304020550773954,
+        "tpi": -2.2618296530047246
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.912006,
+          39.591045
+        ]
+      },
+      "properties": {
+        "id": "213",
+        "probability": 0.9831423759460449,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 12.136711460000017,
+        "elevation": 2064,
+        "slope": 3.1217124,
+        "aspect": 156.60881,
+        "tri": 1.5947444549053078,
+        "tpi": -0.037854889601931
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.753557,
+          39.393775
+        ]
+      },
+      "properties": {
+        "id": "214",
+        "probability": 0.9902397394180298,
+        "prediction": 1,
+        "actual_label": 1,
+        "viz_label": "actual",
+        "temperature": 18.13533656000004,
+        "elevation": 1444,
+        "slope": 5.8474817,
+        "aspect": 12.170308,
+        "tri": 2.160246899469287,
+        "tpi": 0.2523659305941237
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.902493,
+          38.98091
+        ]
+      },
+      "properties": {
+        "id": "215",
+        "probability": 0.0417204312980175,
+        "prediction": 0,
+        "actual_label": 0,
+        "viz_label": "predicted",
+        "temperature": 21.409799720000024,
+        "elevation": 1616,
+        "slope": 20.352945,
+        "aspect": 316.0261,
+        "tri": 8.193644028716392,
+        "tpi": -23.460567823351084
       }
     }
   ]
